@@ -161,8 +161,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const name       = rsvpForm.querySelector('#f-name').value.trim();
     const attendance = rsvpForm.querySelector('input[name="attendance"]:checked');
+    const contact    = rsvpForm.querySelector('input[name="contact"]:checked');
 
-    if (!name || !attendance) {
+    if (!name || !attendance || !contact) {
       gsap.to(rsvpForm.querySelector('.form-btn'), {
         x: [-6, 6, -4, 4, -2, 2, 0],
         duration: 0.45,
@@ -183,8 +184,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (song)    msg += `*Song request:* ${song}\n`;
     msg += `\n_29 December 2026 · Ha Daswa, Vondwe_`;
 
-    // Open WhatsApp (Mutali — primary RSVP contact)
-    window.open(`https://wa.me/27712595296?text=${encodeURIComponent(msg)}`, '_blank');
+    // Open WhatsApp with the selected contact's number
+    window.open(`https://wa.me/${contact.value}?text=${encodeURIComponent(msg)}`, '_blank');
 
     // Animate out form → show success
     gsap.to(rsvpForm, {
