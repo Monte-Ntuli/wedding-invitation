@@ -159,12 +159,10 @@ document.addEventListener('DOMContentLoaded', () => {
   rsvpForm.addEventListener('submit', e => {
     e.preventDefault();
 
-    // Basic validation
     const name       = rsvpForm.querySelector('#f-name').value.trim();
     const attendance = rsvpForm.querySelector('input[name="attendance"]:checked');
 
     if (!name || !attendance) {
-      // Shake the submit button
       gsap.to(rsvpForm.querySelector('.form-btn'), {
         x: [-6, 6, -4, 4, -2, 2, 0],
         duration: 0.45,
@@ -173,7 +171,22 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Animate out form, animate in success
+    const dietary = rsvpForm.querySelector('#f-dietary').value.trim();
+    const song    = rsvpForm.querySelector('#f-song').value.trim();
+    const attending = attendance.value === 'yes' ? 'Joyfully accepts ✓' : 'Regretfully declines ✗';
+
+    // Build the WhatsApp message
+    let msg = `*Lobola RSVP — Thompho & Renda*\n\n`;
+    msg += `*Name:* ${name}\n`;
+    msg += `*Attendance:* ${attending}\n`;
+    if (dietary) msg += `*Dietary requirements:* ${dietary}\n`;
+    if (song)    msg += `*Song request:* ${song}\n`;
+    msg += `\n_29 December 2026 · Ha Daswa, Vondwe_`;
+
+    // Open WhatsApp (Mutali — primary RSVP contact)
+    window.open(`https://wa.me/27712595296?text=${encodeURIComponent(msg)}`, '_blank');
+
+    // Animate out form → show success
     gsap.to(rsvpForm, {
       opacity: 0,
       y: -16,
@@ -182,12 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
       onComplete: () => {
         rsvpForm.style.display = 'none';
         rsvpSuccess.style.display = 'block';
-        gsap.from(rsvpSuccess, {
-          opacity: 0,
-          y: 20,
-          duration: 0.6,
-          ease: 'power2.out',
-        });
+        gsap.from(rsvpSuccess, { opacity: 0, y: 20, duration: 0.6, ease: 'power2.out' });
       },
     });
   });
