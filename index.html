@@ -3,104 +3,311 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Thompho & Renda — Lobola Invitation</title>
+  <title>Thompho &amp; Renda — Lobola 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Great+Vibes&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/index.css" />
 </head>
 <body>
 
-  <div class="bg"></div>
-  <div class="bg-overlay"></div>
+<!-- ═══════════════════════════════════════════
+     SECTION 1 — ENVELOPE SCENE (GSAP pins this)
+═══════════════════════════════════════════ -->
+<section class="env-scene" id="envScene">
 
-  <main class="page">
-    <div class="card">
-      <div class="card-inner">
+  <!-- Parallax background -->
+  <div class="env-bg" id="envBg"></div>
+  <div class="env-overlay"></div>
 
-        <div class="card-top-ornament">
-          <span></span><span class="orn-diamond">◆</span><span></span>
-        </div>
+  <!-- The envelope -->
+  <div class="envelope" id="envelope">
+    <!-- Cream back body -->
+    <div class="env-back"></div>
 
-        <p class="card-eyebrow">You Are Invited</p>
+    <!-- Front fold panels (cover card bottom / sides) -->
+    <div class="env-panel env-panel--bottom"></div>
+    <div class="env-panel env-panel--left"></div>
+    <div class="env-panel env-panel--right"></div>
 
-        <h1 class="card-name card-groom">
-          Thompho
-          <span class="card-surname">Netshivhera</span>
-        </h1>
-
-        <div class="card-lobola-row">
-          <span class="petal">✦</span>
-          <span class="lobola-word">Lobola</span>
-          <span class="petal">✦</span>
-        </div>
-
-        <h1 class="card-name card-bride">
-          Renda
-          <span class="card-surname">Carol Daswa</span>
-        </h1>
-
-        <div class="card-hearts">♥ &nbsp; ♥ &nbsp; ♥</div>
-
-        <div class="card-details-grid">
-          <div class="card-detail">
-            <span class="detail-icon">📍</span>
-            <span class="detail-label">Venue</span>
-            <span class="detail-val">Ha Daswa, Vondwe</span>
-          </div>
-          <div class="card-detail">
-            <span class="detail-icon">📅</span>
-            <span class="detail-label">Date</span>
-            <span class="detail-val">29 Dec 2026</span>
-          </div>
-          <div class="card-detail">
-            <span class="detail-icon">⏰</span>
-            <span class="detail-label">Time</span>
-            <span class="detail-val">11:00</span>
+    <!-- Top flap — rotates open via GSAP -->
+    <div class="env-flap" id="envFlap">
+      <div class="env-flap-face">
+        <div class="wax-seal" id="waxSeal">
+          <div class="wax-seal-ring">
+            <span class="wax-monogram">T&amp;R</span>
           </div>
         </div>
-
-        <div class="card-rsvp">
-          <p class="card-rsvp-title">— RSVP —</p>
-          <div class="card-rsvp-contacts">
-            <p><span class="rsvp-name">Mutali</span><span class="rsvp-num">071 2595 296</span></p>
-            <p><span class="rsvp-name">Dorris</span><span class="rsvp-num">072 745 8972</span></p>
-          </div>
-        </div>
-
-        <div class="card-love">
-          <p class="card-love-title">✦ &nbsp;With Love&nbsp; ✦</p>
-          <p class="card-love-sub">If you wish to bless us with a gift:</p>
-          <div class="card-gifts">
-            <div class="card-gift-col">
-              <p class="gift-heading">Home Gift Vouchers</p>
-              <p>PEP Home</p>
-              <p>Mr Price Home</p>
-              <p>Sheet Street</p>
-            </div>
-            <div class="card-gift-divider"></div>
-            <div class="card-gift-col">
-              <p class="gift-heading">Monetary Gifts</p>
-              <p>Capitec Bank</p>
-              <p>Acc: 1502928521</p>
-              <p>Mr T. Netshivhera</p>
-            </div>
-          </div>
-        </div>
-
-        <p class="card-thankyou">
-          Thank you for being part of our journey and<br />
-          for celebrating this special occasion with us ♥
-        </p>
-
-        <div class="card-bottom-ornament">
-          <span></span><span class="orn-diamond">◆</span><span></span>
-        </div>
-
       </div>
     </div>
-  </main>
+  </div><!-- /.envelope -->
 
-  <script src="js/index.js"></script>
+  <!-- Invitation card — sibling of envelope, higher z-index, starts hidden -->
+  <div class="card-outer" id="cardOuter">
+    <article class="inv-card">
+
+      <div class="inv-ornament inv-ornament--top">
+        <span class="orn-rule"></span>
+        <span class="orn-gem">◆</span>
+        <span class="orn-rule"></span>
+      </div>
+
+      <p class="inv-eyebrow">You Are Invited</p>
+
+      <h1 class="inv-name inv-name--groom">
+        Thompho
+        <span class="inv-surname">Netshivhera</span>
+      </h1>
+
+      <div class="inv-lobola">
+        <span class="inv-lobola-flourish">✦</span>
+        <span class="inv-lobola-text">Lobola</span>
+        <span class="inv-lobola-flourish">✦</span>
+      </div>
+
+      <h1 class="inv-name inv-name--bride">
+        Renda
+        <span class="inv-surname">Carol Daswa</span>
+      </h1>
+
+      <div class="inv-hearts">♥ &thinsp; ♥ &thinsp; ♥</div>
+
+      <div class="inv-details">
+        <div class="inv-detail">
+          <span class="inv-detail-icon">📍</span>
+          <span class="inv-detail-label">Venue</span>
+          <span class="inv-detail-val">Ha Daswa, Vondwe</span>
+        </div>
+        <div class="inv-detail">
+          <span class="inv-detail-icon">📅</span>
+          <span class="inv-detail-label">Date</span>
+          <span class="inv-detail-val">29 Dec 2026</span>
+        </div>
+        <div class="inv-detail">
+          <span class="inv-detail-icon">⏰</span>
+          <span class="inv-detail-label">Time</span>
+          <span class="inv-detail-val">11:00</span>
+        </div>
+      </div>
+
+      <div class="inv-rsvp">
+        <p class="inv-rsvp-label">— RSVP —</p>
+        <p class="inv-rsvp-line"><strong>Mutali</strong> &nbsp;071 2595 296</p>
+        <p class="inv-rsvp-line"><strong>Dorris</strong> &nbsp;072 745 8972</p>
+      </div>
+
+      <div class="inv-ornament inv-ornament--bottom">
+        <span class="orn-rule"></span>
+        <span class="orn-gem">◆</span>
+        <span class="orn-rule"></span>
+      </div>
+
+    </article>
+  </div><!-- /.card-outer -->
+
+  <!-- Scroll cue -->
+  <div class="scroll-cue" id="scrollCue">
+    <span class="scroll-cue-label">Scroll to open</span>
+    <div class="scroll-cue-arrows">
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     SECTION 2 — MAIN CONTENT (flows below)
+═══════════════════════════════════════════ -->
+<main class="content" id="mainContent">
+
+  <!-- ── Hero ─────────────────────────────── -->
+  <section class="s-hero reveal-section">
+    <div class="container">
+      <p class="s-eyebrow">The Celebration of</p>
+      <div class="hero-couple">
+        <h2 class="hero-name script">Thompho</h2>
+        <span class="hero-amp">&amp;</span>
+        <h2 class="hero-name script">Renda</h2>
+      </div>
+      <p class="hero-date">29 · December · 2026</p>
+      <div class="rule-gem">
+        <span></span><span class="gem">◆</span><span></span>
+      </div>
+      <p class="hero-tagline">
+        As we begin this new chapter of our lives together,<br />
+        we joyfully invite you to celebrate with us.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Event Details ─────────────────────── -->
+  <section class="s-details reveal-section">
+    <div class="container">
+      <p class="s-eyebrow">The Details</p>
+      <h2 class="s-title">Event Information</h2>
+      <div class="detail-cards">
+        <div class="detail-card reveal-child">
+          <div class="detail-card-icon">🕐</div>
+          <h3 class="detail-card-label">Time</h3>
+          <p class="detail-card-val">11:00 AM</p>
+          <p class="detail-card-sub">Proceedings begin promptly</p>
+        </div>
+        <div class="detail-card reveal-child">
+          <div class="detail-card-icon">📍</div>
+          <h3 class="detail-card-label">Venue</h3>
+          <p class="detail-card-val">Ha Daswa</p>
+          <p class="detail-card-sub">Vondwe</p>
+        </div>
+        <div class="detail-card reveal-child">
+          <div class="detail-card-icon">📅</div>
+          <h3 class="detail-card-label">Date</h3>
+          <p class="detail-card-val">29 December</p>
+          <p class="detail-card-sub">2026</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Timeline ──────────────────────────── -->
+  <section class="s-timeline reveal-section">
+    <div class="container container--narrow">
+      <p class="s-eyebrow">The Day</p>
+      <h2 class="s-title">Schedule</h2>
+      <div class="timeline">
+        <div class="tl-item reveal-child">
+          <div class="tl-time">11:00</div>
+          <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+          <div class="tl-body">
+            <h3 class="tl-title">Lobola Proceedings</h3>
+            <p class="tl-desc">The formal commencement of the ceremony, honouring our traditions and families.</p>
+          </div>
+        </div>
+        <div class="tl-item reveal-child">
+          <div class="tl-time">13:00</div>
+          <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+          <div class="tl-body">
+            <h3 class="tl-title">Celebratory Lunch</h3>
+            <p class="tl-desc">A shared feast with family and friends to celebrate this joyous milestone.</p>
+          </div>
+        </div>
+        <div class="tl-item reveal-child">
+          <div class="tl-time">15:00</div>
+          <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+          <div class="tl-body">
+            <h3 class="tl-title">Traditional Entertainment</h3>
+            <p class="tl-desc">Cultural performances, music, and dance celebrating our heritage.</p>
+          </div>
+        </div>
+        <div class="tl-item reveal-child">
+          <div class="tl-time">17:00</div>
+          <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+          <div class="tl-body">
+            <h3 class="tl-title">Evening Festivities</h3>
+            <p class="tl-desc">The celebration continues into the evening with music, dance, and togetherness.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── RSVP ──────────────────────────────── -->
+  <section class="s-rsvp reveal-section">
+    <div class="container container--narrow">
+      <p class="s-eyebrow">Kindly Reply</p>
+      <h2 class="s-title">RSVP</h2>
+      <p class="s-sub">Please respond by <strong>15 November 2026</strong></p>
+
+      <form class="rsvp-form" id="rsvpForm" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="f-name">Full Name</label>
+          <input class="form-input" type="text" id="f-name" name="name" placeholder="Your full name" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Will you be attending?</label>
+          <div class="form-radios">
+            <label class="form-radio">
+              <input type="radio" name="attendance" value="yes" required />
+              <span class="radio-mark"></span>
+              <span class="radio-text">Joyfully accepts</span>
+            </label>
+            <label class="form-radio">
+              <input type="radio" name="attendance" value="no" />
+              <span class="radio-mark"></span>
+              <span class="radio-text">Regretfully declines</span>
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="f-dietary">Dietary Requirements</label>
+          <input class="form-input" type="text" id="f-dietary" name="dietary" placeholder="Any dietary requirements or allergies" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="f-song">Song Request</label>
+          <input class="form-input" type="text" id="f-song" name="song" placeholder="A song you'd love to hear" />
+        </div>
+        <button class="form-btn" type="submit">Send RSVP &rarr;</button>
+      </form>
+
+      <div class="rsvp-success" id="rsvpSuccess">
+        <div class="rsvp-success-icon">♥</div>
+        <h3>Thank You!</h3>
+        <p>We've received your RSVP and can't wait to celebrate with you.</p>
+      </div>
+
+      <div class="rsvp-contacts">
+        <p class="rsvp-contacts-title">Or contact us directly:</p>
+        <p><strong>Mutali</strong> — <a href="tel:+27712595296">071 2595 296</a></p>
+        <p><strong>Dorris</strong> — <a href="tel:+27727458972">072 745 8972</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Gifts ─────────────────────────────── -->
+  <section class="s-gifts reveal-section">
+    <div class="container">
+      <p class="s-eyebrow">With Gratitude</p>
+      <h2 class="s-title">Gift Registry</h2>
+      <p class="s-sub">
+        If you wish to bless us with a gift as we begin this new chapter,<br />
+        here are some options to consider:
+      </p>
+      <div class="gift-cards">
+        <div class="gift-card reveal-child">
+          <div class="gift-card-icon">🏠</div>
+          <h3 class="gift-card-title">Home Gift Vouchers</h3>
+          <p class="gift-card-sub">Available at any of these stores:</p>
+          <ul class="gift-list">
+            <li>PEP Home</li>
+            <li>Mr Price Home</li>
+            <li>Sheet Street</li>
+          </ul>
+        </div>
+        <div class="gift-card reveal-child">
+          <div class="gift-card-icon">💳</div>
+          <h3 class="gift-card-title">Monetary Gift</h3>
+          <p class="gift-card-sub">Bank transfer:</p>
+          <div class="bank-detail"><span>Bank</span><strong>Capitec Bank</strong></div>
+          <div class="bank-detail"><span>Account</span><strong>1502928521</strong></div>
+          <div class="bank-detail"><span>Name</span><strong>Mr T. Netshivhera</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ────────────────────────────── -->
+  <footer class="site-footer">
+    <p class="footer-names script">Thompho &amp; Renda</p>
+    <p class="footer-date">29 December 2026 · Ha Daswa, Vondwe</p>
+    <p class="footer-heart">♥</p>
+  </footer>
+
+</main><!-- /.content -->
+
+<!-- GSAP CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="js/index.js"></script>
 </body>
 </html>
